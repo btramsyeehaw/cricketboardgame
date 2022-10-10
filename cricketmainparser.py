@@ -91,6 +91,8 @@ for testbowler in bowler_dict.keys():
 			x = x+spindotpcts[i] if testtype == "Spin" else x+pacedotpcts[i]
 			x = x*(108-sumtaken)
 			x = round(x,0)
+			if x<0:
+				x=0
 			sumtaken = sumtaken+x
 			if len(cutballs)-cutballs.count(0)>0:
 				w = cutballs.count("W")/(len(cutballs)-cutballs.count(0))
@@ -162,5 +164,8 @@ for testbowler in bowler_dict.keys():
 		else:
 			print("BAD  - weird thing happened             ", testbowler)
 	finaldata.append(bowler)
-print(pd.DataFrame(finaldata).head(10))
+finaldataframe = pd.DataFrame(finaldata)
+finaldataframe["team"] = bowler_file["team"]
+finaldataframe["type"] = bowler_file["type"]
+print(finaldataframe.head(10))
 	

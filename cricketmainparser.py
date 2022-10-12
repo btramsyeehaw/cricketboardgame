@@ -142,10 +142,10 @@ finalbatterdata = []
 for testbatter in batterlist:
 	batter = [testbatter]
 	test = final_data_sheet[final_data_sheet["striker"]==testbatter]
-	test = test[test["bowler_type"]=="Pace"]
+	testpace = test[test["bowler_type"]=="Pace"]
 	#pace
 	for i in range(len(overtypes)):
-		cut = test[test['over_type']==overtypes[i]]
+		cut = testpace[testpace['over_type']==overtypes[i]]
 		cutballs = cut["runs_off_bat"].to_list()
 		sumtaken = 0
 		hitstaken = []
@@ -198,13 +198,12 @@ for testbatter in batterlist:
 		else:
 			print("BAD  - weird thing happened             ", testbatter)	
 	#spin
-	testspin = test[test["bowler_type"]=="Pace"]
+	testspin = test[test["bowler_type"]=="Spin"]
 	for i in range(len(overtypes)):
 		cut = testspin[testspin['over_type']==overtypes[i]]
 		cutballs = cut["runs_off_bat"].to_list()
 		sumtaken = 0
 		hitstaken = []
-
 		if len(cutballs)>0:
 			x = cutballs.count(0)/len(cutballs)
 			x = x-spindotpcts[i]
@@ -255,6 +254,51 @@ for testbatter in batterlist:
 			print("BAD  - weird thing happened             ", testbatter)	
 	finalbatterdata.append(batter)
 
-finalbatterdataframe = pd.DataFrame(finalbatterdata)
+for x in finalbatterdata:
+	if x[1][0]=='-' and x[4][0]!='-':
+		x[1]=x[4]
+	if x[4][0]=='-' and x[1][0]!='-':
+		x[4]=x[1]
+	if x[2][0]=='-' and x[5][0]!='-':
+		x[2]=x[5]
+	if x[5][0]=='-' and x[2][0]!='-':
+		x[5]=x[2]
+	if x[3][0]=='-' and x[6][0]!='-':
+		x[3]=x[6]
+	if x[6][0]=='-' and x[3][0]!='-':
+		x[6]=x[3]
 
+for x in finalbatterdata:
+	if x[1][0]=='-':
+		if x[2][0]!='-':
+			x[1]=x[2]
+		else:
+			x[1]=x[3]
+	if x[4][0]=='-':
+		if x[5][0]!='-':
+			x[4]=x[5]
+		else:
+			x[4]=x[6]
+	if x[2][0]=='-':
+		if x[3][0]!='-':
+			x[2]=x[3]
+		else:
+			x[2]=x[1]	
+	if x[5][0]=='-':
+		if x[6][0]!='-':
+			x[5]=x[6]
+		else:
+			x[5]=x[4]
+	if x[3][0]=='-':
+		if x[2][0]!='-':
+			x[3]=x[2]
+		else:
+			x[3]=x[1]	
+	if x[6][0]=='-':
+		if x[5][0]!='-':
+			x[6]=x[5]
+		else:
+			x[6]=x[4]
+
+finalbatterdataframe = pd.DataFrame(finalbatterdata)
 finalbatterdataframe.to_csv("testHundoBatters.csv")

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 tournament_file = pd.read_csv("2022TheHundred.csv")
 bowler_file = pd.read_csv("2022HundoBowlers.csv")
+batter_file = pd.read_csv("2022HundoBatters.csv")
 final_data_sheet = tournament_file[['ball','batting_team','bowling_team','striker','non_striker','bowler']]
 over_type = []
 runs_off_bat = []
@@ -70,12 +71,8 @@ for ot in overtypes:
 			spindotpcts.append(spin["runs_off_bat"].to_list().count(val)/len(spin["runs_off_bat"].to_list()))
 			pacedotpcts.append(pace["runs_off_bat"].to_list().count(val)/len(pace["runs_off_bat"].to_list()))			
 
-finaldata = []
-print(spincounts,pacecounts)
-asdf = final_data_sheet[final_data_sheet["bowler"]=="RA Reifer"]
-print(asdf)
-asdf = asdf[asdf["over_type"]=="1PP"]
-print(asdf["runs_off_bat"].to_list())
+finalbowlerdata = []
+
 for testbowler in bowler_dict.keys():
 	bowler = [testbowler]
 	test = final_data_sheet[final_data_sheet["bowler"]==testbowler]
@@ -84,6 +81,7 @@ for testbowler in bowler_dict.keys():
 		cut = test[test['over_type']==overtypes[i]]
 		cutballs = cut["runs_off_bat"].to_list()
 		sumtaken = 0
+		hitstaken = []
 		if len(cutballs)>0:
 			x = cutballs.count(0)/len(cutballs)
 			x = x-spindotpcts[i] if testtype == "Spin" else x-pacedotpcts[i]
@@ -91,81 +89,172 @@ for testbowler in bowler_dict.keys():
 			x = x+spindotpcts[i] if testtype == "Spin" else x+pacedotpcts[i]
 			x = x*(108-sumtaken)
 			x = round(x,0)
+			x = int(x)
 			if x<0:
 				x=0
+			if x>108:
+				x=108
 			sumtaken = sumtaken+x
-			if len(cutballs)-cutballs.count(0)>0:
-				w = cutballs.count("W")/(len(cutballs)-cutballs.count(0))
-				w = w*(108-sumtaken)
-				w = round(w,0)
-				sumtaken = sumtaken+w
-			else:
-				w = 0
-			
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")>0:
-				s = cutballs.count(6)/(len(cutballs)-cutballs.count(0)-cutballs.count("W"))
-				s = s*(108-sumtaken)
-				s = round(s,0)
-				sumtaken = sumtaken+s
-			else:
-				s = 0
-			
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6):
-				f = cutballs.count(4)/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6))
-				f = f*(108-sumtaken)
-				f = round(f,0)
-				sumtaken = sumtaken+f
-			else:
-				f = 0
-			
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)>0:
-				o = cutballs.count(1)/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4))
-				o = o*(108-sumtaken)
-				o = round(o,0)
-				sumtaken = sumtaken+o
-			else:
-				o = 0
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)>0:
-				e = cutballs.count("E")/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1))
-				e = e*(108-sumtaken)
-				e = round(e,0)
-				sumtaken = sumtaken+e
-			else:
-				e = 0
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E")>0:
-				t = cutballs.count(2)/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E"))
-				t = t*(108-sumtaken)
-				t = round(t,0)
-				sumtaken = sumtaken+t
-			else:
-				t = 0
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E")-cutballs.count(2)>0:
-				th = cutballs.count(3)/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E")-cutballs.count(2))
-				th = th*(108-sumtaken)
-				th = round(th,0)
-				sumtaken = sumtaken+th
-			else:
-				th = 0
-			if len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E")-cutballs.count(2)-cutballs.count(3)>0:
-				fi = cutballs.count(5)/(len(cutballs)-cutballs.count(0)-cutballs.count("W")-cutballs.count(6)-cutballs.count(4)-cutballs.count(1)-cutballs.count("E")-cutballs.count(2)-cutballs.count(3))
-				fi = fi*(108-sumtaken)
-				fi = round(fi,0)
-				sumtaken = sumtaken+fi
-			else:
-				fi = 0
+			hitstaken.append(0)
+
+			def addrating(hittype):
+				global sumtaken
+				sumt = 0
+				for x in hitstaken:
+					sumt = sumt+cutballs.count(x)
+				hitstaken.append(hittype)
+				if len(cutballs)-sumt>0:
+					variable = cutballs.count(hittype)/(len(cutballs)-sumt)
+					variable = variable*(108-sumtaken)
+					variable = round(variable,0)
+					sumtaken = sumtaken+variable
+					return int(variable)
+				else:
+					return 0
+
+			w = addrating("W")
+			s = addrating(6)
+			f = addrating(4)
+			o = addrating(1)
+			e = addrating("E")
+			t = addrating(2)
+			th = addrating(3)
+			fi = addrating(5)
 			
 		else:
 			x = o = t = f = s = e = w = th = fi = "-"
 			sumtaken = 108
 		
 		if sumtaken==108:
-			print("GOOD - bowler data generated correctly  ", testbowler)
+			#print("GOOD - bowler data generated correctly  ", testbowler)
 			bowler.append([x,o,t,th,f,fi,s,e,w])
 		else:
 			print("BAD  - weird thing happened             ", testbowler)
-	finaldata.append(bowler)
-finaldataframe = pd.DataFrame(finaldata)
+	finalbowlerdata.append(bowler)
+finaldataframe = pd.DataFrame(finalbowlerdata)
 finaldataframe["team"] = bowler_file["team"]
 finaldataframe["type"] = bowler_file["type"]
-print(finaldataframe.head(10))
-	
+
+
+
+batterlist = batter_file["striker"].to_list()
+finalbatterdata = []
+for testbatter in batterlist:
+	batter = [testbatter]
+	test = final_data_sheet[final_data_sheet["striker"]==testbatter]
+	test = test[test["bowler_type"]=="Pace"]
+	#pace
+	for i in range(len(overtypes)):
+		cut = test[test['over_type']==overtypes[i]]
+		cutballs = cut["runs_off_bat"].to_list()
+		sumtaken = 0
+		hitstaken = []
+		if len(cutballs)>0:
+			x = cutballs.count(0)/len(cutballs)
+			x = x-pacedotpcts[i]
+			x = x*2
+			x = x+pacedotpcts[i]
+			x = x*(108-sumtaken)
+			x = round(x,0)
+			x = int(x)
+			if x<0:
+				x=0
+			if x>108:
+				x=108
+			sumtaken = sumtaken+x
+			hitstaken.append(0)
+
+			def addrating(hittype):
+				global sumtaken
+				sumt = 0
+				for x in hitstaken:
+					sumt = sumt+cutballs.count(x)
+				hitstaken.append(hittype)
+				if len(cutballs)-sumt>0:
+					variable = cutballs.count(hittype)/(len(cutballs)-sumt)
+					variable = variable*(108-sumtaken)
+					variable = round(variable,0)
+					sumtaken = sumtaken+variable
+					return int(variable)
+				else:
+					return 0
+
+			w = addrating("W")
+			s = addrating(6)
+			f = addrating(4)
+			o = addrating(1)
+			e = addrating("E")
+			t = addrating(2)
+			th = addrating(3)
+			fi = addrating(5)
+			
+		else:
+			x = o = t = f = s = e = w = th = fi = "-"
+			sumtaken = 108
+		
+		if sumtaken==108:
+			#print("GOOD - batter data generated correctly  ", testbatter)
+			batter.append([x,o,t,th,f,fi,s,e,w])
+		else:
+			print("BAD  - weird thing happened             ", testbatter)	
+	#spin
+	testspin = test[test["bowler_type"]=="Pace"]
+	for i in range(len(overtypes)):
+		cut = testspin[testspin['over_type']==overtypes[i]]
+		cutballs = cut["runs_off_bat"].to_list()
+		sumtaken = 0
+		hitstaken = []
+
+		if len(cutballs)>0:
+			x = cutballs.count(0)/len(cutballs)
+			x = x-spindotpcts[i]
+			x = x*2
+			x = x+spindotpcts[i]
+			x = x*(108-sumtaken)
+			x = round(x,0)
+			x = int(x)
+			if x<0:
+				x=0
+			if x>108:
+				x=108
+			sumtaken = sumtaken+x
+			hitstaken.append(0)
+
+			def addrating(hittype):
+				global sumtaken
+				sumt = 0
+				for x in hitstaken:
+					sumt = sumt+cutballs.count(x)
+				hitstaken.append(hittype)
+				if len(cutballs)-sumt>0:
+					variable = cutballs.count(hittype)/(len(cutballs)-sumt)
+					variable = variable*(108-sumtaken)
+					variable = round(variable,0)
+					sumtaken = sumtaken+variable
+					return int(variable)
+				else:
+					return 0
+
+			w = addrating("W")
+			s = addrating(6)
+			f = addrating(4)
+			o = addrating(1)
+			e = addrating("E")
+			t = addrating(2)
+			th = addrating(3)
+			fi = addrating(5)
+			
+		else:
+			x = o = t = f = s = e = w = th = fi = "-"
+			sumtaken = 108
+		
+		if sumtaken==108:
+			#print("GOOD - batter data generated correctly  ", testbatter)
+			batter.append([x,o,t,th,f,fi,s,e,w])
+		else:
+			print("BAD  - weird thing happened             ", testbatter)	
+	finalbatterdata.append(batter)
+
+finalbatterdataframe = pd.DataFrame(finalbatterdata)
+
+finalbatterdataframe.to_csv("testHundoBatters.csv")

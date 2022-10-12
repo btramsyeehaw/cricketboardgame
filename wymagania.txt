@@ -1,0 +1,17 @@
+Batsman Data – Is essentially the same as bowler data except that is broken up by over type and bowler style, so way more columns.  
+One thing I do on the batsman and bowler page is I change all 3s to either 4s or 2s depending on what the batter is more likely to hit or bowler more likely to bowl.
+
+Batsman Calculations – Again similar to Bowling Calculations page.  
+The first 2 columns are empty. 
+I don’t believe there is a reason for that except that over time I had used them for something and if I take them out it messes up the rest of the worksheet.
+The sheet goes on forever because I go through more iterations.  
+If a batsman didn’t bat during power plays I use their stats from the middle overs and 
+if they didn’t bat during those overs I use their death over numbers.  
+If they never batted during middle overs I use their death overs and 
+if they never batted in the death overs I use their middle over statistics.  
+
+Columns UJ to VA are the final numbers on the cards.
+
+Test Page – On this page I set up a quick test page to look at all the results and get an idea of the numbers are close.  
+F9 gives a quick comparison of results if every batter had the same number of balls faced against the same bowlers.  
+The numbers don’t work out perfect but I believe they are close enough for a small sample size of ten to 12 games per team.  

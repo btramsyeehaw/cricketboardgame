@@ -1,87 +1,87 @@
-bowler,type
-A Zampa,Spin
-AD Russell,Pace
-AJ Turner,Spin
-AU Rashid,Spin
-BA Raine,Pace
-BAC Howell,Pace
-BJ Dwarshuis,Pace
-BL D'Oliveira,Spin
-BTJ Wheal,Pace
-C Overton,Pace
-CF Parkinson,Spin
-CJ Jordan,Pace
-CN Miles,Pace
-CP Wood,Pace
-D Moriarty,Spin
-D Pretorius,Pace
-D Wiese,Pace
-DA Payne,Pace
-DJ Bravo,Pace
-DJ Willey,Pace
-DR Briggs,Spin
-DR Sams,Pace
-DW Lawrence,Spin
-FJ Klaassen,Pace
-GHS Garton,Pace
-GJ Maxwell,Spin
-GL van Buuren,Spin
-GLS Scrimshaw,Pace
-HJH Brookes,Pace
-IS Sodhi,Spin
-Imran Tahir,Spin
-J Little,Pace
-JA Thompson,Pace
-JB Lintott,Spin
-JJ Cobb,Spin
-JK Fuller,Pace
-JT Ball,Pace
-KA Pollard,Pace
-KW Richardson,Pace
-L Gregory,Pace
-L Wood,Pace
-LA Dawson,Spin
-LJ Fletcher,Pace
-LS Livingstone,Spin
-M Carter,Spin
-ME Milnes,Pace
-MG Hogan,Pace
-MJ Potts,Pace
-MJJ Critchley,Spin
-MM Ali,Spin
-MP Stoinis,Pace
-MS Crane,Spin
-MT Stanley,Pace
-MW Parkinson,Spin
-Mohammad Hasnain,Pace
-NA Sowter,Spin
-NT Ellis,Pace
-Noor Ahmad,Spin
-P Hatzoglou,Spin
-PI Walter,Pace
-PR Brown,Pace
-PR Stirling,Spin
-RE van der Merwe,Spin
-RF Higgins,Pace
-RJ Gleeson,Pace
-RJW Topley,Pace
-Rashid Khan,Spin
-Rehan Ahmed,Spin
-S Baker,Pace
-SA Abbott,Pace
-SJ Cook,Pace
-SM Curran,Pace
-SP Narine,Spin
-SR Patel,Spin
-T Sangha,Spin
-T Shamsi,Spin
-T Stubbs,Spin
-T van der Gugten,Pace
-TA Lammonby,Pace
-TG Helm,Pace
-TK Curran,Pace
-TS Mills,Pace
-TW Hartley,Spin
-WD Parnell,Pace
-WG Jacks,Spin
-Wahab Riaz,Pace
+﻿bowler,team,type
+A Zampa,Welsh Fire,Spin
+AD Russell,Manchester Originals,Pace
+AJ Turner,Manchester Originals,Spin
+AU Rashid,Northern Superchargers,Spin
+BA Raine,Northern Superchargers,Pace
+BAC Howell,Birmingham Phoenix,Pace
+BJ Dwarshuis,Birmingham Phoenix,Pace
+BL D'Oliveira,Birmingham Phoenix,Spin
+BTJ Wheal,London Spirit,Pace
+C Overton,Southern Brave,Pace
+CF Parkinson,Northern Superchargers,Spin
+CJ Jordan,Southern Brave,Pace
+CN Miles,Northern Superchargers,Pace
+CP Wood,London Spirit,Pace
+D Moriarty,Southern Brave,Spin
+D Pretorius,Welsh Fire,Pace
+D Wiese,Northern Superchargers,Pace
+DA Payne,Welsh Fire,Pace
+DJ Bravo,Northern Superchargers,Pace
+DJ Willey,Northern Superchargers,Pace
+DR Briggs,Oval Invincibles,Spin
+DR Sams,Trent Rockets,Pace
+DW Lawrence,London Spirit,Spin
+FJ Klaassen,Manchester Originals,Pace
+GHS Garton,Southern Brave,Pace
+GJ Maxwell,London Spirit,Spin
+GL van Buuren,Birmingham Phoenix,Spin
+GLS Scrimshaw,Welsh Fire,Pace
+HJH Brookes,Birmingham Phoenix,Pace
+IS Sodhi,Welsh Fire,Spin
+Imran Tahir,Birmingham Phoenix,Spin
+J Little,Manchester Originals,Pace
+JA Thompson,London Spirit,Pace
+JB Lintott,Southern Brave,Spin
+JJ Cobb,Welsh Fire,Spin
+JK Fuller,Southern Brave,Pace
+JT Ball,Welsh Fire,Pace
+KA Pollard,London Spirit,Pace
+KW Richardson,Birmingham Phoenix,Pace
+L Gregory,Trent Rockets,Pace
+L Wood,Trent Rockets,Pace
+LA Dawson,London Spirit,Spin
+LJ Fletcher,Trent Rockets,Pace
+LS Livingstone,Birmingham Phoenix,Spin
+M Carter,Trent Rockets,Spin
+ME Milnes,Oval Invincibles,Pace
+MG Hogan,Southern Brave,Pace
+MJ Potts,Northern Superchargers,Pace
+MJJ Critchley,Welsh Fire,Spin
+MM Ali,Birmingham Phoenix,Spin
+MP Stoinis,Southern Brave,Pace
+MS Crane,London Spirit,Spin
+MT Stanley,Manchester Originals,Pace
+MW Parkinson,Manchester Originals,Spin
+Mohammad Hasnain,Oval Invincibles,Pace
+NA Sowter,Oval Invincibles,Spin
+NT Ellis,London Spirit,Pace
+Noor Ahmad,Welsh Fire,Spin
+P Hatzoglou,Oval Invincibles,Spin
+PI Walter,Manchester Originals,Pace
+PR Brown,Oval Invincibles,Pace
+PR Stirling,Southern Brave,Spin
+RE van der Merwe,Northern Superchargers,Spin
+RF Higgins,Welsh Fire,Pace
+RJ Gleeson,Manchester Originals,Pace
+RJW Topley,Oval Invincibles,Pace
+Rashid Khan,Trent Rockets,Spin
+Rehan Ahmed,Southern Brave,Spin
+S Baker,Southern Brave,Pace
+SA Abbott,Manchester Originals,Pace
+SJ Cook,Trent Rockets,Pace
+SM Curran,Oval Invincibles,Pace
+SP Narine,Oval Invincibles,Spin
+SR Patel,Trent Rockets,Spin
+T Sangha,Birmingham Phoenix,Spin
+T Shamsi,Trent Rockets,Spin
+T Stubbs,Manchester Originals,Spin
+T van der Gugten,Birmingham Phoenix,Pace
+TA Lammonby,Manchester Originals,Pace
+TG Helm,Birmingham Phoenix,Pace
+TK Curran,Oval Invincibles,Pace
+TS Mills,Southern Brave,Pace
+TW Hartley,Manchester Originals,Spin
+WD Parnell,Northern Superchargers,Pace
+WG Jacks,Oval Invincibles,Spin
+Wahab Riaz,Northern Superchargers,Pace

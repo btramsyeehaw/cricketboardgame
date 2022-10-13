@@ -131,9 +131,7 @@ for testbowler in bowler_dict.keys():
 		else:
 			print("BAD  - weird thing happened             ", testbowler)
 	finalbowlerdata.append(bowler)
-finaldataframe = pd.DataFrame(finalbowlerdata)
-finaldataframe["team"] = bowler_file["team"]
-finaldataframe["type"] = bowler_file["type"]
+
 
 
 
@@ -300,5 +298,99 @@ for x in finalbatterdata:
 		else:
 			x[6]=x[4]
 
-finalbatterdataframe = pd.DataFrame(finalbatterdata)
-finalbatterdataframe.to_csv("testHundoBatters.csv")
+batters = []
+for x in finalbatterdata:
+	finalbatterlist = []
+	finalbatterlist.append(x[0])
+	for i in range(1,7):
+		test = []
+		cnt = 0
+		for y in x[i]:
+			if y == 0:
+				finalbatterlist.append("-")
+			else:
+				first = ""
+				second = ""
+				st = np.base_repr(cnt,6)
+				if len(st)==1:
+					temp = "00"+st
+					st = temp
+				elif len(st)==2:
+					temp = "0"+st
+					st = temp
+				for z in st:
+					t = int(z)+1
+					first = first+str(t)
+				cnt = cnt+y
+				st2 = np.base_repr(cnt-1,6)
+				if len(st2)==1:
+					temp = "00"+st2
+					st2 = temp
+				elif len(st2)==2:
+					temp = "0"+st2
+					st2 = temp
+				for z in st2:
+					t = int(z)+1
+					second = second+str(t)
+				ap = first +" - "+ second
+				finalbatterlist.append(ap)
+	batters.append(finalbatterlist)
+batters = pd.DataFrame(batters)
+batters.columns = ["name",
+"PacePP0","PacePP1","PacePP2","PacePP3","PacePP4","PacePP5","PacePP6","PacePPE","PacePPW",
+"PaceMO0","PaceMO1","PaceMO2","PaceMO3","PaceMO4","PaceMO5","PaceMO6","PaceMOE","PaceMOW",
+"PaceDO0","PaceDO1","PaceDO2","PaceDO3","PaceDO4","PaceDO5","PaceDO6","PaceDOE","PaceDOW",
+"SpinPP0","SpinPP1","SpinPP2","SpinPP3","SpinPP4","SpinPP5","SpinPP6","SpinPPE","SpinPPW",
+"SpinMO0","SpinMO1","SpinMO2","SpinMO3","SpinMO4","SpinMO5","SpinMO6","SpinMOE","SpinMOW",
+"SpinDO0","SpinDO1","SpinDO2","SpinDO3","SpinDO4","SpinDO5","SpinDO6","SpinDOE","SpinDOW"]
+batters["team"]=batter_file["team"]
+batters["type"]=batter_file["type"]
+batters.to_csv("testHundoBatters.csv")
+
+
+bowlers = []
+for x in finalbowlerdata:
+	finalbowlerlist = []
+	finalbowlerlist.append(x[0])
+	for i in range(1,4):
+		test = []
+		cnt = 108
+		for y in x[i]:
+			if y == 0 or y == '-':
+				finalbowlerlist.append("-")
+			else:
+				first = ""
+				second = ""
+				st = np.base_repr(cnt,6)
+				if len(st)==1:
+					temp = "00"+st
+					st = temp
+				elif len(st)==2:
+					temp = "0"+st
+					st = temp
+				for z in st:
+					t = int(z)+1
+					first = first+str(t)
+				cnt = cnt+y
+				st2 = np.base_repr(cnt-1,6)
+				if len(st2)==1:
+					temp = "00"+st2
+					st2 = temp
+				elif len(st2)==2:
+					temp = "0"+st2
+					st2 = temp
+				for z in st2:
+					t = int(z)+1
+					second = second+str(t)
+				ap = first +" - "+ second
+				finalbowlerlist.append(ap)
+	bowlers.append(finalbowlerlist)
+
+bowlers = pd.DataFrame(bowlers)
+bowlers.columns = ["name","PP0","PP1","PP2","PP3","PP4","PP5","PP6","PPE","PPW",
+"MO0","MO1","MO2","MO3","MO4","MO5","MO6","MOE","MOW",
+"DO0","DO1","DO2","DO3","DO4","DO5","DO6","DOE","DOW"]
+bowlers["team"] = bowler_file["team"]
+bowlers["type"] = bowler_file["type"]
+bowlers.to_csv("testHundoBowlers.csv")
+

@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-tournament_file = pd.read_csv("2022TheHundred.csv")
-bowler_file = pd.read_csv("2022HundoBowlers.csv")
-batter_file = pd.read_csv("2022HundoBatters.csv")
+tournament_file = pd.read_csv("ICricketWC2022set.csv")
+bowler_file = pd.read_csv("WC2022bowlers.csv")
+batter_file = pd.read_csv("WC2022batters.csv")
 final_data_sheet = tournament_file[['ball','batting_team','bowling_team','striker','non_striker','bowler']]
 over_type = []
 runs_off_bat = []
@@ -22,7 +22,7 @@ for i in range(len(bowler_file['bowler'].to_list())):
 
 for x in final_data_sheet['ball'].to_list():
 	if x!='ball':
-		if float(x)<5:
+		if float(x)<6:
 			over_type.append("1PP")
 		elif float(x)<16:
 			over_type.append("2MO")
@@ -345,7 +345,7 @@ batters.columns = ["name",
 "SpinDO0","SpinDO1","SpinDO2","SpinDO3","SpinDO4","SpinDO5","SpinDO6","SpinDOE","SpinDOW"]
 batters["team"]=batter_file["team"]
 batters["type"]=batter_file["type"]
-batters.to_csv("testHundoBatters.csv")
+batters.to_csv("WCBatters2022.csv")
 
 
 bowlers = []
@@ -392,5 +392,4 @@ bowlers.columns = ["name","PP0","PP1","PP2","PP3","PP4","PP5","PP6","PPE","PPW",
 "DO0","DO1","DO2","DO3","DO4","DO5","DO6","DOE","DOW"]
 bowlers["team"] = bowler_file["team"]
 bowlers["type"] = bowler_file["type"]
-bowlers.to_csv("testHundoBowlers.csv")
-
+bowlers.to_csv("WCBowlers2022.csv")

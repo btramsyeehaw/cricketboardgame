@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-tournament_file = pd.read_csv("2022TheHundred.csv")
+tournament_file = pd.read_csv("ICricketWC2022set.csv")
 
 longbowlerlist = tournament_file['striker'].to_list()
 bowlerlist = [*set(longbowlerlist)]
@@ -16,5 +16,5 @@ for x in bowlerlist:
 			break
 bowlerlistdf["striker"] = bowlerlist
 bowlerlistdf["team"] = bowlerteamlist
-bowlerlistdf.to_csv("2022HundoBatters.csv")
+bowlerlistdf.to_csv("WC2022batters.csv")
 print(len(bowlerlistdf),"batters added to list")

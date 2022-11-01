@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 
-tournament_file = pd.read_csv("ICricketWC2022set.csv")
-batter_file = pd.read_csv("WC2022batters.csv")
-bowler_file = pd.read_csv("WC2022bowlers.csv")
+tournament_file = pd.read_csv("IPL2022.csv")
+batter_file = pd.read_csv("IPL2022batters.csv")
+bowler_file = pd.read_csv("IPL2022bowlers.csv")
 final_data_sheet = tournament_file[['match_id','ball','batting_team','bowling_team','striker','non_striker','bowler']]
 over_length = 6
-target_batter_file = "targetWC2022batters.csv"
-target_bowler_file = "targetWC2022bowlers.csv"
+target_batter_file = "targetIPL2022batters.csv"
+target_bowler_file = "targetIPL2022bowlers.csv"
 #remove unwanted rows from main data base
 droplist = []
 for i in range(len(final_data_sheet['ball'].to_list())):
@@ -26,7 +26,7 @@ for x in final_data_sheet['ball'].to_list():
 	if x!='ball':
 		if float(x)<6:
 			over_type.append("1PP")
-		elif float(x)<16:
+		elif float(x)<15:
 			over_type.append("2MO")
 		else:
 			over_type.append("3DO")
@@ -41,7 +41,10 @@ wd = tournament_file['wides'].to_list()
 for x in range(len(rob)):
 	if rob[x]!='runs_off_bat':
 		if str(wt[x])!='nan':
-			robgood = 'W'
+			if str(wt[x])=='run out':
+				robgood = 'Wro'
+			else:
+				robgood = 'W'
 		elif float(ex[x])>0:
 			if float(nb[x])>0.0 or float(wd[x])>0.0:
 				robgood = 'Eb'
@@ -95,7 +98,7 @@ def get_ball_count(balllist):
 def get_run_count(balllist):
 	cnt = 0
 	for x in balllist:
-		if x!='Eb' and x!='E' and x!='W':
+		if x!='Eb' and x!='E' and x!='W' and x!='Wro':
 			cnt = cnt+x
 	return cnt
 
@@ -130,6 +133,8 @@ for testbowler in bowler_dict.keys():
 		for iterator in range(len(cutballs)):
 			if cutballs[iterator] == "Eb":
 				cutballs[iterator] = "E"
+			if cutballs[iterator] == "Wro":
+				cutballs[iterator] = "W"
 		sumtaken = 0
 		hitstaken = []
 		card=[]
@@ -220,6 +225,8 @@ for testbatter in list(batter_file["striker"].to_list()):
 		for iterator in range(len(cutballs)):
 			if cutballs[iterator] == "Eb":
 				cutballs[iterator] = "E"
+			if cutballs[iterator] == "Wro":
+				cutballs[iterator] = "W"
 		sumtaken = 0
 		hitstaken = []
 		card = []
@@ -287,6 +294,8 @@ for testbatter in list(batter_file["striker"].to_list()):
 		for iterator in range(len(cutballs)):
 			if cutballs[iterator] == "Eb":
 				cutballs[iterator] = "E"
+			if cutballs[iterator] == "Wro":
+				cutballs[iterator] = "W"
 		sumtaken = 0
 		hitstaken = []
 		card = []

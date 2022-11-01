@@ -1,5 +1,5 @@
 file = open("README.txt")
-targetfile = ("IPL2008.csv")
+targetfile = ("IPL2022.csv")
 matches_to_collate = []
 def addmatchtofile(matchid):
 	f = open(targetfile,"a")
@@ -12,7 +12,7 @@ for x in file:
 	#member_countries = ["India","England","SouthAfrica","Pakistan","NewZealand","Australia","WestIndies","SriLanka", "Bangladesh","Afghanistan","Zimbabwe","Ireland"]
 	#WCqualifiers = ["India","Pakistan","Australia","England","SouthAfrica","NewZealand","WestIndies","Afghanistan","SriLanka","Bangladesh","Netherlands","PapuaNewGuinea","Ireland","Namibia","Scotland","Oman"]
 	try:
-		if y[0]=="2008":
+		if y[0]=="2022":
 			if True:
 				z = y[7].split("vs")			
 				if True: #z[0].replace(" ","") in member_countries and z[1].replace(" ","") in member_countries:

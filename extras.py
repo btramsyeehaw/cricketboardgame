@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-tournament_file = pd.read_csv("ICricketWC2022set.csv")
-bowler_file = pd.read_csv("WC2022bowlers.csv")
+tournament_file = pd.read_csv("IPL2022.csv")
+bowler_file = pd.read_csv("IPL2022bowlers.csv")
 
 droplist = []
 for i in range(len(tournament_file['ball'].to_list())):
